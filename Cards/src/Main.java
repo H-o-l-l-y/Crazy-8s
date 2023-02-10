@@ -25,7 +25,7 @@ public class Main {
     public static void turn(){
         Scanner scanner = new Scanner(System.in);
         if(a.canPlay(inPlay.getSuit(), inPlay.getVal())){
-            System.out.println("\n Play or Draw?");
+            System.out.println("\nPlay or Draw?");
             String ans = scanner.nextLine();
             ans = ans.toLowerCase();
             for(char c: ans.toCharArray()){
@@ -42,7 +42,7 @@ public class Main {
             }
 
         }else{
-            System.out.println("\n Draw?");
+            System.out.println("\nDraw?");
             String ans = scanner.nextLine();
             ans = ans.toLowerCase();
             for(char c: ans.toCharArray()){
@@ -151,9 +151,14 @@ public class Main {
             System.out.println("You don't have that suit");
             play(h);
         }
-        inPlay = h.getCard(s, n);
-        h.playCard(s, n);
-        System.out.println("You played " + inPlay);
+        if(s.equals(inPlay.getSuit())||n==inPlay.getVal()){
+          inPlay = h.getCard(s, n);
+          h.playCard(s, n);
+          System.out.println("You played " + inPlay);
+        }else{
+          System.out.println("You cannot play that card");
+          play(h);
+        }
         if(h.hasWon()){
             playerWin();
         }
@@ -169,7 +174,7 @@ public class Main {
                 if (b.cards.get(i).getSuit().equals(inPlay.getSuit()) || b.cards.get(i).getVal() == inPlay.getVal()) {
                     inPlay = b.cards.get(i);
                     b.playCard(b.cards.get(i).getSuit(), b.cards.get(i).getVal());
-                    System.out.println("\n The computer played: " + inPlay);
+                    System.out.println("\nThe computer played: " + inPlay);
                     if(b.hasWon()){
                         comWon();
                     }
@@ -242,4 +247,5 @@ public class Main {
 
 
 }
+
 
